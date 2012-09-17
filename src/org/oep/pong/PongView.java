@@ -441,7 +441,7 @@ public class PongView extends View implements OnTouchListener, OnKeyListener {
     	int min = Math.min(getWidth() / 4, getHeight() / 4);
     	int xmid = getWidth() / 2;
     	int ymid = getHeight() / 2;
-    	mPauseTouchBox = new Rect(xmid - min, ymid - min, xmid + min, ymid + min);
+    	mPauseTouchBox = new Rect((int)xmid - (int)2*(int)min, (int)ymid -(int)min, (int)xmid +(int)2*(int)min,(int) ymid + (int)min);
     }
     
     private void initializePaddles() {
@@ -535,8 +535,8 @@ public class PongView extends View implements OnTouchListener, OnKeyListener {
         
         // Draw ball stuff
         mPaint.setStyle(Style.FILL);
-        mPaint.setColor(Color.WHITE);
-        
+        mPaint.setColor(Color.YELLOW);
+        mPaint.setTextSize(35);
         mBall.draw(canvas);
         
         // If either is a not a player, blink and let them know they can join in!
@@ -561,10 +561,10 @@ public class PongView extends View implements OnTouchListener, OnKeyListener {
         	String pause = context.getString(R.string.pause);
         	int pausew = (int) mPaint.measureText(pause);
         
-        	mPaint.setColor(Color.GREEN);
+        	mPaint.setColor(Color.WHITE);
         	mPaint.setStyle(Style.STROKE);
         	canvas.drawRect(mPauseTouchBox, mPaint);
-        	canvas.drawText(pause, getWidth() / 2 - pausew / 2, getHeight() / 2, mPaint);
+        	canvas.drawText(pause, getWidth() / 2 - pausew / 2, getHeight() /2-getHeight() /6, mPaint);
         }
 
     	// Paint a PAUSED message
@@ -573,7 +573,7 @@ public class PongView extends View implements OnTouchListener, OnKeyListener {
         	int width = (int) mPaint.measureText(s);
         	int height = (int) (mPaint.ascent() + mPaint.descent()); 
         	mPaint.setColor(Color.WHITE);
-        	canvas.drawText(s, getWidth() / 2 - width / 2, getHeight() / 2 - height / 2, mPaint);
+        	canvas.drawText(s, getWidth() / 2 - width / 2, getHeight() / 9, mPaint);
         }
         
         // Draw a 'lives' counter
@@ -972,7 +972,7 @@ public class PongView extends View implements OnTouchListener, OnKeyListener {
 		
 		public static final double BOUND = Math.PI / 9;
 		public static final float SPEED = 4.0f; 
-		public static final int RADIUS = 4;
+		public static final int RADIUS = 15;
 		public static final double SALT = 4 * Math.PI / 9;
 	}
 
@@ -1108,9 +1108,9 @@ public class PongView extends View implements OnTouchListener, OnKeyListener {
 		}
 		
 		/** Thickness of the paddle */
-		private static final int PADDLE_THICKNESS = 10;
+		private static final int PADDLE_THICKNESS = 20;
 		
 		/** Width of the paddle */
-		private static final int PADDLE_WIDTH = 40;
+		private static final int PADDLE_WIDTH = 50;
 	}
 }
